@@ -2,9 +2,11 @@ define([
     'coreJS/adapt',
     'coreViews/blockView',
     'coreModels/blockModel',
+    'coreModels/contentObjectModel',
     './adapt-block-branchingBlockView',
-    './adapt-block-branchingBlockModel'
-], function (Adapt, CoreBlockView, CoreBlockModel, BlockView, BlockModel) {
+    './adapt-block-branchingBlockModel',
+    './adapt-block-branchingPageModel',
+], function (Adapt, CoreBlockView, CoreBlockModel, CorePageModel, BlockView, BlockModel, PageModel) {
 
     var BRANCHING_ID = "_scenario";
 
@@ -27,4 +29,15 @@ define([
         }
         return BlockModelInitialize.apply(this, arguments);
     };
+
+    var PageModelInitialize = CorePageModel.prototype.initialize;
+    CorePageModel.prototype.initialize = function (options) {
+        console.log('reset on revisit')
+        _.extend(this, PageModel);
+        this._setup();
+
+        return PageModelInitialize.apply(this, arguments);
+
+    };
+
 });
