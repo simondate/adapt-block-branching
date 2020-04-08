@@ -6,8 +6,9 @@ define([
 
     postRender: function() {
       CoreArticleView.prototype.postRender.call(this);
-
       if(!this.model.get('_scenario')._isEnabled) return;
+
+      this.listenTo(Adapt, "remove", this.onRemove);
 
       if (this.model.isBranchingEnabled()) {
         if (this.model.isQuestionComplete()) {
@@ -31,19 +32,30 @@ define([
       var block = this.findBlockByScenarioId(this.model.get('_scenario')._userAnswer[answerNum]);
       block.set('_isHidden', false);
       block.set('_isAvailable', true);
-      block.set('_isLocked', false);
       Adapt.trigger("pageLevelProgress:update");
     },
 
     hideFutureBlocks: function() {
       var ancestorModels = this.model.getAncestorModels();
       var currentBlockNthChild = this.model.get('_nthChild');
-      var page = ancestorModels[2];
-      _.each(page.findDescendantModels('blocks'), function(block) {
+      var article = ancestorModels[1];
+      _.each(article.findDescendantModels('blocks'), function(block) {
         if (block.get('_nthChild') > currentBlockNthChild) {
           block.set('_isHidden', true);
           block.set('_isAvailable', false);
-          block.set('_isLocked', true);
+        }
+      });
+      Adapt.trigger("pageLevelProgress:update");
+    },
+
+    showFutureBlocks: function() {
+      var ancestorModels = this.model.getAncestorModels();
+      var currentBlockNthChild = this.model.get('_nthChild');
+      var article = ancestorModels[1];
+      _.each(article.findDescendantModels('blocks'), function(block) {
+        if (block.get('_nthChild') > currentBlockNthChild) {
+          block.set('_isHidden', false);
+          block.set('_isAvailable', true);
         }
       });
       Adapt.trigger("pageLevelProgress:update");

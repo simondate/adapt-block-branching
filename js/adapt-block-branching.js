@@ -32,7 +32,6 @@ define([
 
     var ArticleModelInitialize = CoreArticleModel.prototype.initialize;
     CoreArticleModel.prototype.initialize = function (options) {
-        console.log('reset on revisit')
         _.extend(this, ArticleModel);
         this._setup();
 

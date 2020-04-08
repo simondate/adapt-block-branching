@@ -44,7 +44,7 @@ define([
             var question = this.getQuestion();
 
             if (question === -1) {
-                console.error("BranchingBlockModel", "Missing question");
+                console.error("BranchingBlockModel", "Missing question" , id);
                 return false;
             }
 
@@ -63,7 +63,6 @@ define([
 
         getChosenAnswer: function () {
             var questionModel = this.getQuestionModel();
-            console.log(questionModel);
             return _.find(questionModel, function(index) {
                 if(questionModel.get('_modelAnswer')[index] === true) return true;
             });
@@ -73,7 +72,6 @@ define([
          * Returns Question model
          */
         getQuestionModel: function () {
-            console.log('get question');
             return this.getQuestion();
         }
     }
