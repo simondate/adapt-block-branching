@@ -1,8 +1,8 @@
 define([
   'coreJS/adapt',
-  'coreModels/contentObjectModel'
-], function(Adapt, ContentObjectModel) {
-  var ScenarioBranchingPageModel = {
+  'coreModels/articleModel'
+], function(Adapt, ArticleModel) {
+  var ScenarioBranchingArticleModel = {
 
 
     _setup: function() {
@@ -29,5 +29,5 @@ define([
     }
 
   }
-  return ScenarioBranchingPageModel;
+  return ScenarioBranchingArticleModel;
 });
