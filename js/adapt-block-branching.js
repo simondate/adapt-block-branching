@@ -14,7 +14,6 @@ define([
     CoreBlockView.prototype.initialize = function (options) {
         if (this.model.get(BRANCHING_ID) && this.model.get(BRANCHING_ID)._isEnabled) {
             //extend
-
             _.extend(this, BlockView);
         }
         //initialize the block in the normal manner

@@ -26,6 +26,22 @@ define([
             return this.get("_scenario");
         },
 
+        findBlockByScenarioId: function(scenarioId) {
+          var ancestorModels = this.getAncestorModels();
+          var page = ancestorModels[1];
+          return _.find(page.findDescendantModels('blocks'), function(block) {
+            if (block.get('_scenario')._scenarioId == parseInt(scenarioId, 10)) return true;
+          });
+        },
+
+        revealBlock: function(answerNum) {
+          var block = this.findBlockByScenarioId(this.get('_scenario')._userAnswer[answerNum]);
+          block.set('_isHidden', false);
+          block.set('_isAvailable', true);
+          Adapt.trigger("pageLevelProgress:update");
+          return block;
+        },
+
         getQuestion: function() {
           var components = this.get('_children').models;
           var question = _.find(components, function(component){
@@ -63,10 +79,7 @@ define([
 
         getChosenAnswer: function () {
             var questionModel = this.getQuestionModel();
-            return _.find(questionModel, function(index) {
-                if(questionModel.get('_modelAnswer')[index] === true) return true;
-            });
-
+            return _.indexOf(questionModel.get('_userAnswer'), true);
         },
         /**
          * Returns Question model
