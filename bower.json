@@ -10,7 +10,7 @@
         "adapt-extension"
     ],
     "authors": [
-		"Simon Date [simon@adaptfreelancer.com]"
+		"Simon Date <simon@adaptfreelancer.com>"
 	],
   "extension" : "scenario",
   "targetAttribute": "_scenario",
