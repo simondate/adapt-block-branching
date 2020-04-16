@@ -17,25 +17,25 @@ define([
 
         // //PUBLIC
         isBranchingEnabled: function () {
-            var o = this.get("_scenario");
+            var o = this.get("_blockBranching");
             if (o && o._isEnabled && this.isConfigValid()) return true;
             return false;
         },
 
         getConfig: function () {
-            return this.get("_scenario");
+            return this.get("_blockBranching");
         },
 
         findBlockByScenarioId: function(scenarioId) {
           var ancestorModels = this.getAncestorModels();
           var page = ancestorModels[1];
           return _.find(page.findDescendantModels('blocks'), function(block) {
-            if (block.get('_scenario')._scenarioId == parseInt(scenarioId, 10)) return true;
+            if (block.get('_blockBranching')._scenarioId == parseInt(scenarioId, 10)) return true;
           });
         },
 
         revealBlock: function(answerNum) {
-          var block = this.findBlockByScenarioId(this.get('_scenario')._userAnswer[answerNum]);
+          var block = this.findBlockByScenarioId(this.get('_blockBranching')._userAnswer[answerNum]);
           block.set('_isHidden', false);
           block.set('_isAvailable', true);
           Adapt.trigger("pageLevelProgress:update");
@@ -64,7 +64,7 @@ define([
                 return false;
             }
 
-            if (question.get('_items').length != this.get('_scenario')._userAnswer.length) {
+            if (question.get('_items').length != this.get('_blockBranching')._userAnswer.length) {
               console.error("BranchingBlockModel", "Number of questions doesn't equal branching");
               return false;
             }

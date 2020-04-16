@@ -7,11 +7,11 @@ define([
 
     _setup: function() {
       if(this.get('_type') === "menu") return;
-      if(!this.get('_scenario') || !this.get('_scenario')._isEnabled) return;
+      if(!this.get('_blockBranching') || !this.get('_blockBranching')._isEnabled) return;
 
       this.listenTo(Adapt, "remove", this.onRemove);
 
-      if(!this.get('_scenario')._resetOnRevisit) {
+      if(!this.get('_blockBranching')._resetOnRevisit) {
         this.listenTo(Adapt,'articleView:postRender', this.hideFutureBlocks);
       } else {
         this.listenTo(Adapt,'articleView:postRender', this.hideFutureBlocksStart);
@@ -32,7 +32,7 @@ define([
     findFirstQuestion: function(restoreProgress) {
       var context = this;
       return _.find(this.findDescendantModels('blocks'), function(block) {
-        if(!block.get('_scenario') || !block.get('_scenario')._isEnabled) return false;
+        if(!block.get('_blockBranching') || !block.get('_blockBranching')._isEnabled) return false;
         return true;
       })
     },
@@ -43,7 +43,7 @@ define([
       var blockNth = firstQuestionBlock.get('_nthChild');
       var context = this;
       _.each(this.findDescendantModels('blocks'), function(block, index) {
-        if(index <= blockNth && (!block.get('_scenario') || !block.get('_scenario')._isEnabled)) {
+        if(index <= blockNth && (!block.get('_blockBranching') || !block.get('_blockBranching')._isEnabled)) {
           context.showBlock(block);
         } else if (blockNth === index + 1) {
           context.showBlock(block);
@@ -57,7 +57,7 @@ define([
     },
 
     showPath: function(block) {
-      if(!block.get('_scenario') || !block.get('_scenario')._isEnabled) {
+      if(!block.get('_blockBranching') || !block.get('_blockBranching')._isEnabled) {
         this.showBlock(block);
         return;
       }

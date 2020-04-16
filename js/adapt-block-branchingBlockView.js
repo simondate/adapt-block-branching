@@ -6,7 +6,7 @@ define([
 
     postRender: function() {
       CoreArticleView.prototype.postRender.call(this);
-      if(!this.model.get('_scenario')._isEnabled) return;
+      if(!this.model.get('_blockBranching')._isEnabled) return;
 
       this.listenTo(Adapt, "remove", this.onRemove);
 

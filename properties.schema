@@ -16,29 +16,50 @@
           "type": "object"
         },
         "article": {
-          "type": "object"
-        },
-        "block": {
           "type": "object",
           "properties": {
-            "_scenario": {
+            "_blockBranching": {
               "type": "object",
               "required": false,
-              "legend": "Scenario branching",
+              "legend": "Block branching",
               "properties": {
                 "_isEnabled": {
                   "type": "boolean",
                   "default": false,
-                  "title": "Enable Scenario Branching",
-                  "inputType": "Checkbox",
-                  "help": "help"
+                  "title": "Enable Block Branching",
+                  "inputType": "Checkbox"
                 },
-                "questionId": {
+                "_resetOnRevisit": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "Reset scenario on revisit",
+                  "inputType": "Checkbox",
+                  "help": "Reset the scenario if the learner leaves and then returns to the page"
+                }
+              }
+            }
+          }
+        },
+        "block": {
+          "type": "object",
+          "properties": {
+            "_blockBranching": {
+              "type": "object",
+              "required": false,
+              "legend": "Block branching",
+              "properties": {
+                "_isEnabled": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "Enable Block Branching",
+                  "inputType": "Checkbox"
+                },
+                "_scenarioId": {
                   "type": "string",
                   "default": "",
                   "require": true,
-                  "title": "Question ID",
-                  "help": "The id of the question component above in the page that will reveal this block.",
+                  "title": "Scenario ID",
+                  "help": "An ID assigned to this block so that it can be revealed by another block",
                   "inputType": "Text",
                   "help": "help"
                 },
@@ -46,25 +67,14 @@
                   "type": "array",
                   "required": true,
                   "title": "Answers",
-                  "questionId": {
+                  "items": {
                     "type": "string",
                     "default": "",
                     "require": true,
-                    "title": "Question ID",
-                    "help": "The id of the question component above in the page that will reveal this block.",
-                    "inputType": "Text",
-                    "help": "help"
+                    "title": "Scenario ID",
+                    "help": "These options should align with the answers in the question component inside this block. Whichever option is selected that scenario ID is revealed next",
+                    "inputType": "Text"
                   }
-                },
-                "forceCompletion": {
-                  "type": "boolean",
-                  "required": false,
-                  "title": "Force Completion",
-                  "inputType": {
-                    "type": "Boolean",
-                    "options": [false, true]
-                  },
-                  "validators": []
                 }
               }
             }

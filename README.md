@@ -14,7 +14,7 @@ The extension enables different blocks within an Article to be hidden or shown a
 
 #### *blocks.json*
 
-**_scenario** (object) The setting is required for every single block on the page with Branching
+**_blockBranching** (object) The setting is required for every single block on the page with Branching
 
 **_isEnabled** (boolean) Turns the current block into a branching block. This will hide any blocks that appear later in the page.
 

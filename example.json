@@ -1,11 +1,11 @@
 // articles.JSON
-"_scenario": {
+"_blockBranching": {
     "_isEnabled": true,
     "_resetOnRevisit": false
 }
 
 //blocks.json
-"_scenario": {
+"_blockBranching": {
     "_isEnabled": true,
     "_scenarioId": 0,
     "_userAnswer": [

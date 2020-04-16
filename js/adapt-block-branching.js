@@ -8,7 +8,7 @@ define([
   './adapt-block-branchingArticleModel',
 ], function(Adapt, CoreBlockView, CoreBlockModel, CoreArticleModel, BlockView, BlockModel, ArticleModel) {
 
-  var BRANCHING_ID = "_scenario";
+  var BRANCHING_ID = "_blockBranching";
 
   var BlockViewInitialize = CoreBlockView.prototype.initialize;
   CoreBlockView.prototype.initialize = function(options) {
