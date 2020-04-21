@@ -1,6 +1,6 @@
 {
     "name": "adapt-block-branching",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "framework": ">=2.0.0",
     "displayName": "Block Branching",
     "main": "/js/adapt-block-branching.js",
