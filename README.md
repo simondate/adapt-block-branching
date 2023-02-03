@@ -1,3 +1,10 @@
+# Deprecated - Use adapt-contrib-branching instead
+
+This extension is no longer recommended to use. You should instead use the Core team supported [adapt-contrib-branching](https://github.com/adaptlearning/adapt-contrib-branching) instead!
+
+---
+
+
 # adapt-block-branching
 
 An Adapt framework extension to add block based branching to an article.
